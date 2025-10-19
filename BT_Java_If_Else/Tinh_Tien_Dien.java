@@ -27,7 +27,7 @@ public class Tinh_Tien_Dien {
             } catch (Exception e) {
                 // TODO: handle exception
                 System.err.println("Please enter a valid integer");
-                sc.nextLine();
+                sc.nextLine(); // Clear buffer: consume the rest of the current line (including '\n')
 
             }
 
@@ -42,7 +42,7 @@ public class Tinh_Tien_Dien {
         }
         // In ra tien dien
         System.out.println("Tien dien cua ban la:" + formatter.format(billAmount) + "VND");
-        sc.close();
+        sc.close();// Important: Close Scanner to prevent resource leak
 
     }
 }
