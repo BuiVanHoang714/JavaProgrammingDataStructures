@@ -1,0 +1,36 @@
+✅ Checklist Input Validation:
+
+1. NULL CHECK
+   - if (input == null)
+
+2. EMPTY CHECK
+   - if (input.isEmpty() || input.isBlank())
+
+3. TRIM WHITESPACE ⭐ QUAN TRỌNG
+   - input = input.trim()
+
+4. LENGTH VALIDATION
+   - if (input.length() > MAX_LENGTH)
+   - Prevent: Buffer overflow, DOS attack
+
+5. CASE NORMALIZATION
+   - input = input.toUpperCase()
+   - Consistent comparison
+
+6. CHARACTER VALIDATION
+   - if (!input.matches("[A-Z0-9]+"))
+   - Allow chỉ: A-Z, 0-9
+
+7. RANGE VALIDATION
+   - if (age < 0 || age > 150)
+
+8. FORMAT VALIDATION
+   - if (!isValidEmail(email))
+   - if (!isValidPhoneNumber(phone))
+
+9. SECURITY CHECK
+   - Prevent: SQL Injection, XSS Attack
+   - Use regex: matches("[A-Z0-9]+")
+
+10. LOGGING
+    - Log lại input invalid cho audit

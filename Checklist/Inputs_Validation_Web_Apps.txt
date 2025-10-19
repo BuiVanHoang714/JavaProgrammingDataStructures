@@ -1,0 +1,43 @@
+Phần 1: General Best PracticesValidate cả client-side và server-side: Client-side cho feedback nhanh, server-side cho security và data integrity. Lý do: Client-side dễ bypass, server-side ngăn injection attacks như SQL/XSS. Gợi ý: Sử dụng cả hai để balance UX và an toàn, ví dụ validate form inputs trước khi submit. 
+
+Sử dụng schema validation cho runtime data: Validate mọi input như forms, URL params, API responses, cookies, local storage. Lý do: Đảm bảo data khớp với types, tránh malformed inputs. Gợi ý: Áp dụng Zod hoặc tương tự để parse và validate. 
+
+Hiển thị error messages rõ ràng, thân thiện: Tránh thông báo chung chung; giải thích vấn đề và hướng dẫn sửa. Lý do: Tăng trust và giúp user fix nhanh, giảm frustration. Gợi ý: Ví dụ thay "Invalid input" bằng "Email không hợp lệ, thử name@example.com". 
+
+@joncphillips
+
+Giảm số fields và simplify form: Chỉ yêu cầu data cần thiết, dùng defaults/autofill. Lý do: Giảm cognitive load, tăng completion rate theo Occam’s Razor. Gợi ý: Break tasks nhỏ, loại bỏ unnecessary elements. 
+
+Tích hợp success/error states: Cung cấp feedback cho validation, như success messages hoặc focus vào error đầu tiên. Lý do: Cải thiện UX, giúp user biết action thành công. Gợi ý: Sử dụng toast notifications cho coarse feedback. 
+
+Phần 2: Frontend ValidationInline validation và realtime feedback: Hiển thị errors bên cạnh field sau input hoặc submit. Lý do: Cải thiện trải nghiệm, validation sau input thường hiệu quả nhất. Gợi ý: Focus tự động vào field error đầu tiên. 
+
+Sử dụng built-in browser validation: Áp dụng attributes như required, min/max, pattern (regex). Lý do: Robust và không cần JS phức tạp. Gợi ý: Gọi checkValidity() để validate form. 
+
+@housecor
+
+CSS cho validation states: Sử dụng :user-valid/:user-invalid để thay đổi style dựa trên interaction. Lý do: Tạo micro-interactions mà không cần JS dirty checking. Gợi ý: .group:has(:valid) { --color: var(--valid); } để hiển thị errors. 
+
+@jh3yy
+
+Hỗ trợ accessibility: Sử dụng labels, ARIA cho errors, keyboard navigation. Lý do: Làm app inclusive, tuân thủ WCAG. Gợi ý: Đảm bảo color contrast, alt text, heading hierarchy. 
+
+Autofill và input states: Hỗ trợ autocomplete, placeholder, focus states. Lý do: Giảm user input, tăng usability. Gợi ý: Sử dụng type="password" đúng cách, validation states cho errors. 
+
+Phần 3: Backend ValidationValidate trước khi process data: Kiểm tra inputs tại API boundary, sanitize trước lưu. Lý do: Ngăn bad data downstream, đảm bảo business rules. Gợi ý: Sử dụng schema như Zod cho server-side. 
+
+Trả response consistent: Sử dụng HTTP codes (400 Bad Request, etc.), error messages rõ ràng. Lý do: Giúp frontend handle dễ dàng. Gợi ý: Luôn validate và normalize data trước output. 
+
+@maybeshalinii
+
+Server-side làm foundation: Bắt đầu với server validation trong full-stack apps, sau add client-side. Lý do: Xử lý authorization/errors reliably. Gợi ý: Reuse schema giữa client/server. 
+
+@rwieruch
+
+Phần 4: Security ConsiderationsSanitize và prevent attacks: Validate để tránh SQL injection, XSS; không trust client data. Lý do: Client-side chỉ deter casual attacks, server-side là core security. Gợi ý: Sanitize/normalize trước process. 
+
+Authentication/authorization trong forms: Kiểm tra user permissions trước handle data. Lý do: Ngăn unauthorized actions. Gợi ý: Tích hợp với validation flow. 
+
+Phần 5: Mobile-SpecificOptimize cho touch và responsive: Đảm bảo fields lớn (min 44x44px), responsive design. Lý do: Giảm errors trên small screens, theo Occam’s Razor. Gợi ý: Sử dụng number inputs cho numbers, tránh extra fields. 
+
+Keyboard và navigation support: Hỗ trợ keyboard, tab order, voice commands. Lý do: Cải thiện accessibility trên mobile. Gợi ý: Test với screen readers, ensure touch-friendly.
