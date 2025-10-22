@@ -45,10 +45,12 @@ public class GuessBirthday {
             answer = scanner.nextLine().toUpperCase();
 
         }
-        if (answer.equals("Y")) {
-            return SET_VALUES[setIndex];
-        } else {
-            return 0;
-        }
+        return answer.equals("Y") ? SET_VALUES[setIndex] : 0;
+        // if (answer.equals("Y")) {
+        // return SET_VALUES[setIndex];
+        // } else {
+        // return 0;
+        // }
+
     }
 }
