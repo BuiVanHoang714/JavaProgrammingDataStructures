@@ -5,7 +5,8 @@ import java.util.Arrays;
 public class SortArray {
     public static void main(String[] args) {
         int[] Numbers = { 5, 7, 20, 2, 5 };
-        sortArrays(Numbers);
+        // sortArrays(Numbers);
+        Arrays.sort(Numbers);
         System.out.println("\n" + Arrays.toString(Numbers));
         int balance = 10;
         System.out.println("Balance is " + checkingPalindromes(balance));
