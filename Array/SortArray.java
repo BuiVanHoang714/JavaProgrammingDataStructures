@@ -1,15 +1,17 @@
 package Array;
 
+import Utilities.Utilities;
 import java.util.Arrays;
+import java.util.Scanner;
 
 public class SortArray {
     public static void main(String[] args) {
-        int[] Numbers = { 5, 7, 20, 2, 5 };
-        // sortArrays(Numbers);
-        Arrays.sort(Numbers);
-        System.out.println("\n" + Arrays.toString(Numbers));
-        int balance = 10;
-        System.out.println("Balance is " + checkingPalindromes(balance));
+
+        System.out.println("Enter number of transactions: ");
+        Scanner sc = new Scanner(System.in);
+
+        int numberOfTrasactions = Utilities.systemInputIntProcessing(sc, "Enter number of transactions: ");
+
     }
 
     private static void sortArrays(int[] Numbers) {
@@ -29,13 +31,16 @@ public class SortArray {
         }
     }
 
-    private static int checkingPalindromes(int balance) {
+    private static int checkRangeFrom1to10000(int inputs) {
 
         while (true) {
-            if (balance < 9)
-                break;
-            balance = balance - 9;
+            if (inputs > 10000) {
+                System.out.println("Please enter the number between 1 ≤ n ≤ 10,000 ");
+            } else {
+                return inputs;
+
+            }
+
         }
-        return balance;
     }
 }
