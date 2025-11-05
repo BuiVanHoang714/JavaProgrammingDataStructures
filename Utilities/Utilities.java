@@ -76,6 +76,44 @@ public class Utilities {
                 System.out.println("Nhap khong hop le (khong phai so nguyen). Vui long thu lai.");
             }
         }
+    }
+
+    public static int[] systemInputListIntProcessing(Scanner sc, String prompt) {
+        if (sc == null) {
+            throw new IllegalArgumentException("Scanner must not be null");
+        }
+
+        while (true) {
+            if (prompt != null && !prompt.isEmpty()) {
+                System.out.print(prompt);
+            }
+
+            if (!sc.hasNextLine()) {
+                return null; // no more input
+            }
+
+            String inputs = sc.nextLine().trim();
+
+            if (inputs.equalsIgnoreCase("exit") || inputs.equalsIgnoreCase("quit")) {
+                return null; // signal caller to stop
+            }
+
+            if (inputs.isEmpty()) {
+                System.out.println("Nhap khong hop le (rong). Vui long thu lai.");
+                continue;
+            }
+
+            try {
+                String[] parts = inputs.split("\\s+|,");
+                int[] result = new int[parts.length];
+                for (int i = 0; i < parts.length; i++) {
+                    result[i] = Integer.parseInt(parts[i]);
+                }
+                return result;
+            } catch (NumberFormatException e) {
+                System.out.println("Nhap khong hop le (khong phai so nguyen). Vui long thu lai.");
+            }
+        }
 
     }
 
@@ -83,13 +121,23 @@ public class Utilities {
 
         while (true) {
             if (inputs <= 0) {
-                System.out.println("Please enter the positive number");
+                System.err.println("Please enter the positive number");
             } else {
                 return inputs;
 
             }
 
         }
+    }
+
+    public static boolean checkPositive(int inputs[]) {
+        for (int i : inputs) {
+            if (i <= 0) {
+                System.err.println("Error: All numbers must be positive. Found: " + i);
+                return false;
+            }
+        }
+        return true;
     }
 
 }
