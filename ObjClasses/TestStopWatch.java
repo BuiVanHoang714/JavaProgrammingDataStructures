@@ -7,8 +7,8 @@ package ObjClasses;
 public class TestStopWatch {
     public static void main(String[] args) {
         StopWatch st = new StopWatch();
-        st.start();
         selectionSort(initArray());
+        st.start();
         st.stop();
 
         System.out.println("Execution time for sorting 100,00 numbers using selection sort:");
@@ -18,16 +18,29 @@ public class TestStopWatch {
 
     public static void selectionSort(int[] array) {
 
-        for (int i = 0; i < array.length; i++) {
+        for (int i = 0; i < array.length - 1; i++) {
+
+            int currentMinIndex = i;
 
             for (int j = i + 1; j < array.length; j++) {
 
-                if (array[i] > array[j]) {
-                    int temp = array[j];
-                    array[j] = array[i];
-                    array[i] = temp;
+                if (array[currentMinIndex] > array[j]) {
+
+                    currentMinIndex = j;
 
                 }
+                // Swap array[i] with list[currentMinIndex] if necessary
+
+            }
+
+            if (currentMinIndex != i) {
+
+                int temp = array[i];
+
+                array[i] = array[currentMinIndex];
+
+                array[currentMinIndex] = temp;
+
             }
         }
 
